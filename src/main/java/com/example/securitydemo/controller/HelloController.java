@@ -1,34 +1,22 @@
 package com.example.securitydemo.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
 
-    // No authentication required
     @GetMapping("/public/hello")
     public String publicHello() {
-        return "Hello Public!";
+        return "Public Endpoint";
     }
 
-    // Requires USER role
     @GetMapping("/user/hello")
     public String userHello() {
-        return "Hello User!";
+        return "User Endpoint";
     }
 
-    // Requires ADMIN role
     @GetMapping("/admin/hello")
     public String adminHello() {
-        return "Hello Admin!";
-    }
-
-    // Method-level security example
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/method-secured")
-    public String methodSecured() {
-        return "Only Admin via @PreAuthorize!";
+        return "Admin Endpoint";
     }
 }
